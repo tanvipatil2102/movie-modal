@@ -69,7 +69,7 @@ const onEditBtn = async(eve) => {
     }catch(err){
         cl(err);
     }finally{
-        loader.classList.add("d-none")
+        loader.classList.add("d-none");
     }
 }
 
@@ -89,14 +89,14 @@ const createMovieCards = (arr) => {
     movieContainer.innerHTML = arr.map(obj => {
         return `
         <div class="card mt-4 movieCard" id="${obj.id}"> 
-            <div class="card-header">
+            <div class="card-header bg-info text-white">
                 <h4>${obj.title}</h4>
             </div>
             <div class="card-body cardBody p-0">
                 <img src="${obj.path}" alt="movieImg">
             </div>
-            <div class="card-footer d-flex justify-content-between">
-                <button class="btn btn-primary" type="button" onclick="onEditBtn(this)">Edit</button>
+            <div class="card-footer bg-info d-flex justify-content-between">
+                <button class="btn btn-warning" type="button" onclick="onEditBtn(this)">Edit</button>
                 <button class="btn btn-danger" type="button" onclick="onDeleteBtn(this)">Delete</button>
             </div>
         </div>
@@ -128,14 +128,14 @@ const creatCard = (obj) => {
     card.id = obj.id;
     card.className = "card mt-4 movieCard";
     card.innerHTML = `
-                        <div class="card-header">
+                        <div class="card-header bg-info text-white">
                             <h4>${obj.title}</h4>
                         </div>
                         <div class="card-body cardBody p-0">
                             <img src="${obj.path}" alt="movieImg">
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <button class="btn btn-primary" type="button" onclick="onEditBtn(this)">Edit</button>
+                        <div class="card-footer bg-info d-flex justify-content-between">
+                            <button class="btn btn-warning" type="button" onclick="onEditBtn(this)">Edit</button>
                             <button class="btn btn-danger" type="button" onclick="onDeleteBtn(this)">Delete</button>
                         </div>
     `
@@ -189,7 +189,8 @@ const onUpdateHandler = async() => {
     }catch(err){
         cl(err);
     }finally{
-        loader.classList.add("d-none")
+        loader.classList.add("d-none");
+        formControl.reset();
     }
 }
 

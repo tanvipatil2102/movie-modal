@@ -1,9 +1,18 @@
+body{
+    min-height: 100vh;
+    background-image: linear-gradient(blueviolet,violet);
+}
+
 .ourmodal{
     width: 50%;
     margin-left: 25%;
     position: absolute;
     animation: pop-up .4s ease-in-out;
     z-index: 1;
+}
+
+.icon{
+    cursor: pointer;
 }
 
 .backdrop{
@@ -14,6 +23,7 @@
     z-index:0;
     top: 0;
     left: 0;
+    cursor: pointer;
 }
 
 .movieCard{
@@ -62,6 +72,11 @@
     .movieCard{
         width: 49%;
     }
+    .ourmodal{
+        width: 70%;
+        margin: 15%;
+        top: 5%;
+    }
 }
 
 @media all and  (max-width : 550px){
@@ -71,5 +86,6 @@
     .ourmodal{
         width: 100%;
         margin: 0;
+        top: 5%;
     }
 }
