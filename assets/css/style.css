@@ -56,3 +56,15 @@
         opacity: 1;
     }
 }
+
+@media all and (max-width : 800px) {
+    .movieCard{
+        width: 49%;
+    }
+}
+
+@media all and  (max-width : 550px){
+    .movieCard{
+        width: 99%;
+    }
+}
