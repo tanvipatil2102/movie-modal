@@ -11,6 +11,8 @@ const rating = document.getElementById("rating");
 const formControl = document.getElementById("formControl");
 const updateBtn = document.getElementById("updateBtn");
 const addMovie = document.getElementById("addMovie");
+const loader = document.getElementById("loader");
+
 
 let baseUrl = `https://movie-modal-2-default-rtdb.asia-southeast1.firebasedatabase.app/`;
 let postsUrl = `${baseUrl}/movies.json`;
@@ -34,13 +36,15 @@ const onDeleteBtn = (eve) => {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!"
       }).then(async(result) => {
-        try{
-            let res = await makeApiCall("DELETE", deleteUrl);
-            document.getElementById(getId).remove();
-        }catch(err){
-            cl(err);
-        }
         if (result.isConfirmed) {
+            try{
+                let res = await makeApiCall("DELETE", deleteUrl);
+                document.getElementById(getId).remove();
+            }catch(err){
+                cl(err);
+            }finally{
+                loader.classList.add("d-none")
+            }
           Swal.fire({
             title: "Deleted!",
             text: "Your movie has been deleted.",
@@ -64,12 +68,15 @@ const onEditBtn = async(eve) => {
         updateBtn.classList.remove("d-none");
     }catch(err){
         cl(err);
+    }finally{
+        loader.classList.add("d-none")
     }
 }
 
 
 const makeApiCall = async(methodName, apiUrl, msgBody) => {
     let msgData = msgBody ? JSON.stringify(msgBody) : null;
+    loader.classList.remove("d-none");
     let res = await fetch(apiUrl, {
         method : methodName,
         body : msgData
@@ -110,6 +117,8 @@ const getDBdata = async() => {
         }
     }catch(err){
         cl(err)
+    }finally{
+        loader.classList.add("d-none")
     }
 }
 getDBdata()
@@ -153,6 +162,7 @@ const postDataInDB = async(eve) => {
         cl(err);
     }finally{
         formControl.reset();
+        loader.classList.add("d-none");
     }
 }
 
@@ -178,6 +188,8 @@ const onUpdateHandler = async() => {
         })
     }catch(err){
         cl(err);
+    }finally{
+        loader.classList.add("d-none")
     }
 }
 
